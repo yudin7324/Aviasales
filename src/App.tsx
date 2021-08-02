@@ -1,24 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Logo from './components/Logo/Logo';
+import styles from './app.module.scss';
+import Sidebar from './components/Sidebar/Sidebar';
+import { Buttons } from './components';
+import Tickets from './components/Tickets/Tickets';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.app}>
+      <div className={styles.container}>
+        <header className={styles.header}>
+          <Logo/>
+        </header>
+
+        <main className={styles.content}>
+  
+          <div className={styles.content__left}>
+            <Sidebar/>
+          </div>
+
+          <div className={styles.content__right}>
+            <Buttons/>
+            <Tickets/>
+          </div>
+
+        </main>
+      </div>
     </div>
   );
 }
