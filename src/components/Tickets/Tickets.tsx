@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import Ticket from './Ticket/Ticket';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { getSearchId, getTickets } from '../../features/tickets/ticketsSlice';
+import { generateId } from '../../utils/generateId';
 
-const Tickets = () => {
+type TicketsProps = {
+  tickets: any[];
+}
 
-  // const data = useSelector((state: RootState) => state.data);
-  const tickets = useSelector((state: RootState) => state.data.tickets);
+const Tickets: FC<TicketsProps> = ({
+  tickets
+}) => {
+ 
   const status = useSelector((state: RootState) => state.data.status);
-  const stop = useSelector((state: RootState) => state.data.stop);
   const searchId = useSelector((state: RootState) => state.data.id);
   const dispatch = useDispatch();
 
@@ -23,16 +27,21 @@ const Tickets = () => {
     }
   }, [dispatch, searchId])
 
-
-
-
-
+  const openList = () => {
+      return 6
+  }
 
   return (
-    <div>
-      {/* {status === 'loading' ? <h1>Loading...</h1> : ''} */}
-      <Ticket/>
-    </div>
+    <>
+      {status === 'loading' && <h1>Загрузка...</h1>}
+      {tickets.map((ticket) => {
+        return <Ticket 
+          key={generateId()}
+          price={ticket.price} 
+          segments={ticket.segments} 
+          carrier={ticket.carrier}
+        />}).slice(1, openList())}
+    </>
   )
 }
 

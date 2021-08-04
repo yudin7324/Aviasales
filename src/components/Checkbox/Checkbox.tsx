@@ -1,22 +1,29 @@
-import React, { FC } from 'react';
-import styles from './checkbox.module.scss';
+import React, { FC, useState } from 'react';
+import cn from './checkbox.module.scss';
 
 type CheckboxProps = {
   label: string;
   id: string;
+  selectCheckbox: (arg: string, arg2: boolean) => void;
 }
 
 const Checkbox: FC<CheckboxProps> = ({
   label, 
-  id
+  id,
+  selectCheckbox,
 }) => {
+
+  const [check, setCheck] = useState(true);
+
   return (
-      <label className={styles.checkbox}>
+      <label className={cn['checkbox']}>
         <input
-            className={styles.checkbox__item}
+            className={cn['checkbox__item']}
             type="checkbox"
             name={id}
-            onChange={() => {}}
+            onChange={() => setCheck(!check)}
+            onClick={() => selectCheckbox(id, check)}
+            checked={check}
         />
         {label}
       </label>

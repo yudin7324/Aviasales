@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from './Button/Button';
-import styles from './Buttons.module.scss';
+import cn from './Buttons.module.scss';
 
 const Buttons = () => {
 
@@ -14,13 +14,13 @@ const Buttons = () => {
       label: 'Самый быстрый',
     },
     {
-      id: 'opti',
+      id: 'optimal',
       label: 'Оптимальный',
     },
   ]
 
   return (
-    <div className={styles.buttons}>
+    <div className={cn['buttons']}>
       {buttonsData.map((button) => <Button key={button.id} id={button.id} label={button.label}/>)}
     </div>
   )

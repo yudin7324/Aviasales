@@ -1,25 +1,25 @@
 .app {
   background-color: #F3F7FA;
   font-family: 'Open Sans', sans-serif;
-  height: 100vh;
+  min-height: 100vh;
   color: #4A4A4A;
-}
 
-.container {
-  margin: 0 auto;
-  max-width: 755px;
-}
+  &__container {
+    margin: 0 auto;
+    max-width: 755px;
+  }
 
-.header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 50px 0 30px 0;
-}
+  &__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0 30px 0;
+  }
 
-.content {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr;
-  column-gap: 20px;
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    column-gap: 20px;
+  } 
 }

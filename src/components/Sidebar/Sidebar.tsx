@@ -1,29 +1,35 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Checkbox from './../Checkbox/Checkbox';
 import styles from './Sidebar.module.scss';
 
-const Sidebar = () => {
+type SidebarProps = {
+  selectCheckbox: (arg: string, arg2: boolean) => void;
+}
+
+const Sidebar: FC<SidebarProps> = ({
+  selectCheckbox,
+}) => {
 
   const checkboxData = [
     {
       id: 'all',
-      label: 'Все'
+      label: 'Все',
     },
     {
       id: 'none',
-      label: 'Без пересадок'
+      label: 'Без пересадок',
     },
     {
       id: 'one',
-      label: '1 пересадка'
+      label: '1 пересадка',
     },
     {
       id: 'two',
-      label: '2 пересадки'
+      label: '2 пересадки',
     },
     {
       id: 'three',
-      label: '3 пересадки'
+      label: '3 пересадки',
     },
   ]
 
@@ -34,7 +40,12 @@ const Sidebar = () => {
 
       <form className={styles.sidebar__form}>
           {checkboxData.map((item) => 
-            <Checkbox key={item.id} label={item.label} id={item.id}/> 
+            <Checkbox 
+              key={item.id} 
+              label={item.label} 
+              id={item.id} 
+              selectCheckbox={selectCheckbox}
+            /> 
           )}
       </form>
     </div>
