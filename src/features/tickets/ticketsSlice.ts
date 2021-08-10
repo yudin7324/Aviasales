@@ -29,9 +29,6 @@ export const getTickets = createAsyncThunk(
     'tickets/getTickets',
     async (searchId: string, {rejectWithValue, dispatch} ) => {
 
-
-
-
       try {
         const subscribe = async () => {  
 
@@ -59,7 +56,7 @@ export const getTickets = createAsyncThunk(
 
       } catch (error) {
         return rejectWithValue(error.message);
-      }
+      } 
     }
 )
 

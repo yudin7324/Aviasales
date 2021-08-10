@@ -1,8 +1,8 @@
 import React from 'react';
-import Button from './Button/Button';
-import cn from './Buttons.module.scss';
+import Button from './SortButton/SortButton';
+import cn from './SortButtons.module.scss';
 
-const Buttons = () => {
+const SortButtons = () => {
 
   const buttonsData = [
     {
@@ -26,4 +26,4 @@ const Buttons = () => {
   )
 }
 
-export default Buttons;
+export default SortButtons;

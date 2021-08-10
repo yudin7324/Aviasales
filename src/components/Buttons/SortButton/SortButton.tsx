@@ -6,7 +6,7 @@ type ButtonProps = {
   label: string;
 }
 
-const Button: FC<ButtonProps> = ({
+const SortButton: FC<ButtonProps> = ({
   id,
   label
 }) => {
@@ -18,4 +18,4 @@ const Button: FC<ButtonProps> = ({
   )
 }
 
-export default Button;
+export default SortButton;

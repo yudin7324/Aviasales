@@ -1,0 +1,20 @@
+.display-button {
+  text-align: center;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 0;
+  color: #fff;
+  background-color: #2196F3;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  margin-bottom: 50px;
+  cursor: pointer;
+  line-height: 20px;
+
+  &:hover {
+    background-color: #1379cc;
+  }
+}

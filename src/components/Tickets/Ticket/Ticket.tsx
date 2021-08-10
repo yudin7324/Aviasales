@@ -15,29 +15,28 @@ const Ticket: FC<TicketProps> = ({
   segments
 }) => {
 
+  const priceFormat = () => {
+    return price.toString().split("").reverse().reduce((agregation, char, i) => {
+      if (i % 3 === 0) {
+          return agregation + " " + char
+      }
+      return agregation + char 
+    }, "Р ").split("").reverse().join("")
+  }
 
-    const priceFormat = () => {
-      return price.toString().split("").reverse().reduce((agregation, char, i) => {
-        if (i % 3 === 0) {
-            return agregation + " " + char
-        }
-        return agregation + char 
-      }, "Р ").split("").reverse().join("")
-    }
-
-    return (
-        <div className={cn['ticket']}  >
-            <div className={cn['ticket__header']}>
-                <div className={cn['ticket__header-price']}>{priceFormat()}</div>
-                <div className={cn['ticket__header-logo']}>
-                    <img src={`//pics.avs.io/99/36/{${carrier}}.png`} alt="logo" />
-                </div>
-            </div>
-            <div className={cn['ticket__info']}>
-              {segments.map((item) => <TicketInfo key={generateId()} {...item}/>)}
-            </div>
+  return (
+    <div className={cn['ticket']}  >
+      <div className={cn['ticket__header']}>
+        <div className={cn['ticket__header-price']}>{priceFormat()}</div>
+        <div className={cn['ticket__header-logo']}>
+            <img src={`//pics.avs.io/99/36/{${carrier}}.png`} alt="logo" />
         </div>
-    )
+      </div>
+      <div className={cn['ticket__info']}>
+        {segments.map((item) => <TicketInfo key={generateId()} {...item}/>)}
+      </div>
+    </div>
+  )
 }
 
 export default Ticket;

@@ -24,21 +24,19 @@ const TicketInfo: FC<TicketInfoProps> = ({
   }
 
   const getTimeDestination = (date: string) => {
-    let originTime = new Date(date).toLocaleTimeString('ru-Ru').substr(0, 5)
-    // TODO Сделать корректное отображение времени
-    let destinationTime = '18:34'
-
-
-    return `${originTime} - ${destinationTime}`
+    let dateStart = new Date(date);
+    let dateEnd = new Date(dateStart.getTime() + duration * 60 * 1000);
+    return dateStart.toTimeString().slice(0, 5) + " - " + dateEnd.toTimeString().slice(0, 5);
   }
 
   const getStopsHeader = (stops: any[]) => {
-    if (stops.length === 0) {
-      return "Без пересадок"
-    } else if(stops.length === 1) {
-      return stops.length + " Пересадка"
-    } else if (stops.length >= 2) {
-      return stops.length + " Пересадки"
+    switch (stops.length) {
+      case 0:
+        return 'без пересадок'
+      case 1:
+        return `${stops.length} пересадка` 
+      default:
+        return `${stops.length} пересадки`
     }
   }
 
