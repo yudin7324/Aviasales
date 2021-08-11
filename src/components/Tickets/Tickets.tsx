@@ -3,10 +3,11 @@ import Ticket from './Ticket/Ticket';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { generateId } from '../../utils/generateId';
+import { TicketInterface } from './../../features/tickets/types';
 
 type TicketsProps = {
   displayTickets: number;
-  filterTickets: any[];
+  filterTickets: Array<TicketInterface>;
 }
 
 const Tickets: FC<TicketsProps> = ({

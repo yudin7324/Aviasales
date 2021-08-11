@@ -4,12 +4,19 @@ import cn from './DisplayButton.module.scss';
 type DisplayButtonProps = {
   setDisplayTickets: React.Dispatch<React.SetStateAction<number>>;
   displayTickets: number;
+  activeFilter: any[];
 }
 
 const DisplayButton: FC<DisplayButtonProps> = ({
   setDisplayTickets,
-  displayTickets
+  displayTickets,
+  activeFilter,
 }) => {
+
+  if (activeFilter.length === 0) {
+    return <h2>Необходимо выбрать параметр</h2>
+  }
+
   return (
     <>
       <button 

@@ -1,27 +1,25 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { sortButtonData } from '../../features/tickets/constants';
 import Button from './SortButton/SortButton';
 import cn from './SortButtons.module.scss';
 
-const SortButtons = () => {
+type SortButtonsProps = {
+  sortHandleChange: (arg1: string) => void;
+}
 
-  const buttonsData = [
-    {
-      id: 'chip',
-      label: 'Самый дешевый',
-    },
-    {
-      id: 'fast',
-      label: 'Самый быстрый',
-    },
-    {
-      id: 'optimal',
-      label: 'Оптимальный',
-    },
-  ]
+const SortButtons: FC<SortButtonsProps> = ({
+  sortHandleChange,
+}) => {
 
   return (
     <div className={cn['buttons']}>
-      {buttonsData.map((button) => <Button key={button.id} id={button.id} label={button.label}/>)}
+      {sortButtonData.map((button) => 
+        <Button 
+          key={button.value} 
+          value={button.value} 
+          label={button.label}
+          sortHandleChange={sortHandleChange}
+        />)}
     </div>
   )
 }

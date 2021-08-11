@@ -1,36 +1,49 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { useMemo } from "react";
+import { TicketInterface } from "./types";
 
-const useTickets = () => {
-  const allTickets: any = useSelector((state: RootState) => state.data.tickets);
+export const useSortTickets = (tickets: Array<TicketInterface>) => {
 
-  const checkboxData = [
-    {
-      id: 0,
-      label: 'Без пересадок',
-      value: 'NONE',
-    },
-    {
-      id: 1,
-      label: '1 пересадка',
-      value: 'ONE',
-    },
-    {
-      id: 2,
-      label: '2 пересадки',
-      value: 'TWO',
-    },
-    {
-      id: 3,
-      label: '3 пересадки',
-      value: 'THREE',
-    },
-  ]
-
-  return {
-    tickets: allTickets,
-    checkboxData,
+  const sortTickets = (selectedSort: string) => {
+    switch (selectedSort) {
+      case 'CHIP':
+        return [...tickets].sort((a, b) => a.price - b.price)
+      case 'FAST': 
+        return [...tickets].sort((a, b) => a.segments[0].duration - b.segments[0].duration)
+      case 'OPTIMAL':
+        return [...tickets].sort((a, b) => (a.price - b.price) - (b.segments[0].duration - a.segments[0].duration))  
+      default:
+        return tickets;
+    }
   }
+  return sortTickets;
+} 
+
+export const useFilterTickets = ( activeFilter: Array<string>, tickets: Array<TicketInterface>, selectedSort: string ) => {
+
+    const sortTickets = useSortTickets(tickets);
+
+    const filteredTickets = useMemo(() => {
+      if (activeFilter.length === 4) {
+        return sortTickets(selectedSort);
+      } else if (activeFilter.length < 4) {
+        return sortTickets(selectedSort).filter((ticket: TicketInterface) => {
+          if (activeFilter.includes('NONE') && ticket.segments.some((item) => item.stops.length === 0)) {
+            return true;
+          }
+          if (activeFilter.includes('ONE') && ticket.segments.some((item) => item.stops.length === 1)) {
+            return true;
+          }
+          if (activeFilter.includes('TWO') && ticket.segments.some((item) => item.stops.length === 2)) {
+            return true;
+          }
+          if (activeFilter.includes('THREE') && ticket.segments.some((item) => item.stops.length === 3)) {
+            return true;
+          }
+          return false
+        });
+      }
+    }, [activeFilter, selectedSort, sortTickets]);
+
+  return filteredTickets ? filteredTickets : tickets;
 }
 
-export {useTickets};

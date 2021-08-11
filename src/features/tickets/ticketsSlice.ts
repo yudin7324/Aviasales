@@ -43,17 +43,9 @@ export const getTickets = createAsyncThunk(
             })
             await subscribe()
           }
-
           return response.data
         }
         return subscribe();
-        // const response = await axios(`https://front-test.beta.aviasales.ru/tickets?searchId=${searchId}`);
-
-        // if (response.status !== 200) {
-        //   throw new Error(response.statusText);
-        // }
-        // return response.data;
-
       } catch (error) {
         return rejectWithValue(error.message);
       } 

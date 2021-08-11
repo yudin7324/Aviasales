@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useTickets } from '../../features/tickets/useTickets';
+import { checkboxData } from '../../features/tickets/constants';
 import cn from './Filter.module.scss';
 
 type FilterProps = {
@@ -11,7 +11,6 @@ const Filter:FC<FilterProps> = ({
   onFilterChange,
   activeFilter,
 }) => {
-  const { checkboxData } = useTickets();
 
   return (
     <div className={cn['filter']}>
@@ -22,7 +21,7 @@ const Filter:FC<FilterProps> = ({
             className={cn['checkbox__item']}
             id="all"
             type="checkbox"
-            onClick={() => onFilterChange("ALL")}
+            onChange={() => onFilterChange("ALL")}
             checked={activeFilter?.length === checkboxData.length}
           />
           Все
